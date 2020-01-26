@@ -1,5 +1,5 @@
 {
-  "name": "app",
+  "name": "lunch-app-ui",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,7 +17,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "REACT_APP_ENV=prod react-scripts build",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

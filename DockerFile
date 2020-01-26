@@ -1,16 +1,13 @@
 # Build GO API
 FROM golang as builder
-
 ADD . /app
-
 WORKDIR /app/server
-
 RUN go mod download
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -ldflags "-w" -a -o /main .
 
 # Build the React application
 FROM node:stretch AS node_builder
-COPY --from=builder /app/app ./
+COPY --from=builder /app/ui ./
 RUN npm install
 RUN npm run build
 
@@ -19,9 +16,9 @@ RUN npm run build
 # that we will deploy to production
 FROM alpine:latest
 #RUN apk --no-cache add ca-certificates
-COPY --from=builder /main ./
-COPY --from=node_builder /build ./web
-RUN chmod +x ./main
+COPY --from=builder /main ./server/main
+COPY --from=node_builder /build ./ui/build
+RUN chmod +x ./server/main
 EXPOSE 8080
-CMD ./main
+CMD ./server/main
 

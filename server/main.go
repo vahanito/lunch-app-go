@@ -5,7 +5,7 @@ import (
 	"net/http"
 )
 
-func main() {
+func ff() {
 	router := gin.Default()
 	router.LoadHTMLGlob("../ui/build/*.html")
 	router.Static("/static", "../ui/build/static")

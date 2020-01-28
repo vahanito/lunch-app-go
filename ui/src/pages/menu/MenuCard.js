@@ -84,11 +84,11 @@ class MenuCard extends Component {
             <tr key={index}>
                 <td className="no-wrap"><i className="fas fa-utensils"></i> {index + 1}</td>
                 <td className={this.highlightMenu(index)}>{menu.name}</td>
-                {menu.price ? <td className="no-wrap">{menu.price}</td> : ""}
+                {menu.price ? <td className="no-wrap">{menu.price}</td> : null}
             </tr>);
         return <tbody>
         <tr>
-            <td><i class="fas fa-utensil-spoon"></i></td>
+            <td><i className="fas fa-utensil-spoon"></i></td>
             <td className={this.props.menu.highlightSoup ? 'font-weight-bold' : null}>{this.props.menu.soup.name}</td>
         </tr>
         {menuList}
@@ -105,7 +105,8 @@ MenuCard.propTypes = {
         restaurant: PropTypes.string,
         date: PropTypes.any,
         soup: PropTypes.any,
-        menus: PropTypes.array
+        menus: PropTypes.array,
+        url: PropTypes.string
     }).isRequired,
 };
 

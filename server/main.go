@@ -51,6 +51,6 @@ func setupStaticSources(router *gin.Engine) {
 }
 
 func restaurantList(context *gin.Context) {
-	res := []string{"del_patio"}
+	res := []string{"del_patio", "pivarium", "na_rohu", "dr_hunger"}
 	context.JSON(200, res)
 }

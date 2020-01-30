@@ -1,9 +1,9 @@
 import React, {Component} from "react";
-import {getMenus} from "api/Api";
 import MenuCard from "./menu/MenuCard";
 import CardGroup from "react-bootstrap/CardGroup";
 import {SearchInput} from "../components/Input";
 import {Loader} from "../components/Loader";
+import { getMenu, getRestaurants } from '../api/Api';
 
 class MenuTable extends Component {
 
@@ -17,10 +17,14 @@ class MenuTable extends Component {
 
     componentDidMount() {
         this.setState({loading: true});
-        getMenus().then(response => {
-            this.setState({
-                loading: false,
-                menus: response
+        getRestaurants().then(response => {
+            response.forEach(restaurant => {
+              getMenu(restaurant).then(menuResponse => {
+                this.setState({
+                  loading: false,
+                  menus: this.state.menus.concat(menuResponse)
+                })
+              })
             })
         }).catch(reason => {
             this.setState({

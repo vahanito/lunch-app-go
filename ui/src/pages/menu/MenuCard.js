@@ -18,7 +18,7 @@ class MenuCard extends Component {
     }
 
     render() {
-        const tableBody = this.props.menu.soup ? this.menuList()
+        const tableBody = this.props.menu.soup && this.props.menu.menus ? this.menuList()
             : <tbody>
             <tr>
                 <td>{this.props.menu.info ? this.props.menu.info : 'Chyba pri načítaní menu'}</td>
